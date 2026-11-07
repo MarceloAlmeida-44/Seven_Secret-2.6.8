@@ -1,0 +1,19 @@
+<% const promo = produto.desconto !== null && Number(produto.desconto) < Number(produto.preco);
+ const fmt = n => Number(n).toLocaleString('pt-BR',{style:'currency',currency:'BRL'}); %>
+<article class="catalog-card" data-product-id="<%= produto.id %>">
+ <a class="card-image" href="/produto/<%= produto.id %>" aria-label="Ver <%= produto.nome %>">
+  <img src="<%= produto.imagem %>" alt="<%= produto.nome %>" loading="lazy">
+  <span class="card-badges">
+   <% if(produto.destaque){ %><span class="badge-featured">Destaque</span><% } %>
+   <% if(promo){ %><span class="badge-sale">−<%= Math.round((1-produto.desconto/produto.preco)*100) %>%</span><% } %>
+   <% if(Number(produto.estoque)<=0){ %><span class="badge-stock">Esgotado</span><% } %>
+  </span>
+ </a>
+ <div class="card-content">
+  <p class="eyebrow"><%= produto.tipo %></p>
+  <h3><a href="/produto/<%= produto.id %>"><%= produto.nome %></a></h3>
+  <p class="card-volume"><%= produto.capacidade %></p>
+  <p class="card-price"><% if(promo){ %><s><%= fmt(produto.preco) %></s><% } %><strong><%= fmt(produto.desconto ?? produto.preco) %></strong></p>
+  <button type="button" class="add-to-bag" data-id="<%= produto.id %>" aria-label="<%= Number(produto.estoque)<=0 ? produto.nome + ' sem estoque' : 'Adicionar ' + produto.nome + ' à sacola' %>" <%= Number(produto.estoque)<=0 ? 'disabled' : '' %>><%= Number(produto.estoque)<=0 ? 'Sem estoque' : 'Adicionar à sacola' %></button>
+ </div>
+</article>

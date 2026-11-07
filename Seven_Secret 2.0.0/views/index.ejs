@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seven Secrets | Alta Perfumaria Exclusiva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/css/busca-global.css"><link rel="stylesheet" href="/css/modal.css">
+<script src="https://unpkg.com/lucide@latest" defer></script><script src="/js/modal.js" defer></script>
+<link rel="stylesheet" href="/css/store-header.css">
+</head><body>
+<%- include('partials/store-header') %>
+<main>
+<%- include('partials/store-banner',{banner}) %>
+<section id="produtos" class="catalog" aria-labelledby="catalog-title">
+ <div class="catalog-heading"><div><p class="eyebrow">Encontre a sua assinatura</p><h2 id="catalog-title">Nossas fragrâncias</h2></div><p>Todos os seus segredos em uma coleção.</p></div>
+ <p id="catalog-count" class="catalog-count" role="status" aria-live="polite"><%= produtos.length %> produto(s)</p>
+ <div id="catalog-grid" class="catalog-grid"><% [...produtos].sort((a,b)=>Number(b.destaque)-Number(a.destaque)||a.id-b.id).forEach(produto=>{ %><%- include('partials/produto-card',{produto}) %><% }); %></div>
+ <p id="catalog-empty" class="catalog-empty" <%= produtos.length ? 'hidden' : '' %>>Nenhuma fragrância encontrada. Experimente outra pesquisa no cabeçalho.</p>
+</section>
+</main>
+<%- include('partials/store-footer') %><%- include('partials/modal') %>
+<script src="/js/index.js" defer></script><script src="/js/busca-global.js" defer></script>
+</body></html>

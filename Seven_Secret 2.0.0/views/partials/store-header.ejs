@@ -1,0 +1,8 @@
+<header class="ss-header">
+ <a href="/" class="ss-header__brand">Seven Secrets</a>
+ <nav class="ss-header__nav" aria-label="Navegação principal">
+  <a href="/#produtos" class="ss-header__link" title="Buscar"><i class="ss-header__icon" data-lucide="search" aria-hidden="true"></i><span>Buscar</span></a>
+  <a href="<%= currentUser ? '/editar-conta' : '/conta' %>" class="ss-header__link" title="Conta"><i class="ss-header__icon" data-lucide="user" aria-hidden="true"></i><span><%= currentUser ? currentUser.nome : 'Conta' %></span></a>
+  <a href="/sacola" class="ss-header__link" title="Sacola"><i class="ss-header__icon" data-lucide="shopping-bag" aria-hidden="true"></i><span>Sacola</span></a>
+ </nav>
+</header>

@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "tipo": "Floral Frutado",
+        "nome": "Extâse",
+        "preco": 699.99,
+        "desconto": 499.99,
+        "capacidade": "Extâse - 100ml",
+        "descricao": "Uma fusão envolvente de rosas e framboesas maduras. Esta fragrância é uma celebração da paixão e da alegria, ideal para quem busca uma presença radiante e inesquecível.",
+        "imagem": "/img/Extase.png"
+    },
+    {
+        "id": 2,
+        "tipo": "Fresco Vibrante",
+        "nome": "Trend",
+        "preco": 659.99,
+        "desconto": 499.99,
+        "capacidade": "Trend - 100ml",
+        "descricao": "A frescura das flores brancas em harmonia com notas amadeiradas secas, flutuando sobre uma base líquida azul vibrante. Um perfume moderno e dinâmico, perfeito para quem dita tendências.",
+        "imagem": "/img/Trend.png"
+    },
+    {
+        "id": 3,
+        "tipo": "Floral Refinado",
+        "nome": "Lavin",
+        "preco": 599.99,
+        "desconto": 399.99,
+        "capacidade": "Lavin - 100ml",
+        "descricao": "Um bouquet sofisticado que une a suavidade da lavanda à elegância do jasmim. Esta fragrância oferece um rastro atemporal e refinado, para quem aprecia o luxo discreto.",
+        "imagem": "/img/Lavin.png"
+    },
+    {
+        "id": 4,
+        "tipo": "Herbáceo Marcante",
+        "nome": "Adamantium",
+        "preco": 699.99,
+        "desconto": 499.99,
+        "capacidade": "Adamantium - 100ml",
+        "descricao": "Uma essência verde e musgosa, com a presença marcante de ramos de lavanda sobre uma base de carvalho rústico. Um perfume que evoca a força da natureza e uma masculinidade autêntica.",
+        "imagem": "/img/Adamantium.png"
+    }
+]

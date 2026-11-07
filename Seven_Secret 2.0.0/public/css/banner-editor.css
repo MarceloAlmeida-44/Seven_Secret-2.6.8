@@ -1,0 +1,33 @@
+.banner-editor { min-width:0; margin:0 0 55px; padding:0 0 45px; border-bottom:1px solid #e8e5df; text-align:left; }
+.banner-editor .banner-editor__heading h2 { margin:0 0 12px; font:400 1.8rem/1.2 'Playfair Display',serif; color:#20221e; text-align:left; }
+.banner-editor .banner-editor__intro,
+.banner-editor .banner-editor__preview-help { margin:0 0 20px; color:#6c6c65; font-size:.78rem; line-height:1.7; letter-spacing:0; }
+.banner-editor .banner-editor__status { margin:0 0 16px; padding:11px 13px; background:#f7f6f2; color:#52584b; font-size:.78rem; line-height:1.7; letter-spacing:0; overflow-wrap:anywhere; }
+.banner-editor .banner-editor__status[data-state="error"] { background:#fff1ef; color:#9c3329; }
+.banner-editor .banner-editor__status[data-state="success"] { background:#edf5ed; color:#365b38; }
+.banner-editor__form fieldset { min-width:0; margin:0; padding:0; border:0; }
+.banner-editor__legend { margin-bottom:20px; font-size:.7rem; letter-spacing:1.5px; text-transform:uppercase; }
+.banner-editor__field { display:flex; flex-direction:column; align-items:stretch; min-width:0; gap:8px; margin-bottom:20px; }
+.banner-editor__field label { color:#43463e; font-size:.74rem; line-height:1.6; }
+.banner-editor__field input,
+.banner-editor__field textarea { box-sizing:border-box; width:100%; min-width:0; padding:11px 12px; border:1px solid #d8d6d0; border-radius:0; background:#fff; color:#20221e; font:400 .85rem/1.6 'Montserrat',sans-serif; }
+.banner-editor__field textarea { resize:vertical; }
+.banner-editor__field small { color:#77796f; font-size:.68rem; line-height:1.7; }
+.banner-editor__row { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:20px; }
+.banner-editor__save { width:100%; padding:15px 20px; border:1px solid #252920; background:#252920; color:#fff; font:400 .72rem/1.5 'Montserrat',sans-serif; text-transform:uppercase; letter-spacing:1px; cursor:pointer; }
+.banner-editor__save:hover { background:#444b3a; }
+.banner-editor__save:disabled,
+.banner-editor__form fieldset:disabled .banner-editor__save { opacity:.55; cursor:wait; }
+.banner-editor__secondary { align-self:flex-start; margin:0 0 12px; padding:9px 12px; border:1px solid #d4d0c8; background:#fff; color:#4f5549; font:400 .7rem/1.5 'Montserrat',sans-serif; cursor:pointer; }
+.banner-editor__preview { min-width:0; margin-top:30px; }
+.banner-editor__preview-toolbar { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px; margin-bottom:12px; }
+.banner-editor__preview-toolbar h3 { margin:0; font:400 1.3rem 'Playfair Display',serif; color:#20221e; }
+.banner-editor__devices { display:flex; flex-wrap:wrap; gap:8px; }
+.banner-editor__device { padding:8px 11px; border:1px solid #d4d0c8; background:#fff; color:#555b4e; font:400 .68rem/1.4 'Montserrat',sans-serif; cursor:pointer; }
+.banner-editor__device[aria-pressed="true"] { border-color:#252920; background:#252920; color:#fff; }
+.banner-editor .banner-editor__preview-help { margin-bottom:12px; font-size:.7rem; }
+.banner-editor__preview-stage { position:relative; width:100%; min-width:0; height:320px; overflow:hidden; background:#eae6df; }
+.banner-editor__preview-frame { position:absolute; top:0; left:0; display:block; max-width:none; margin:0; border:0; transform-origin:top left; }
+.banner-editor :focus-visible { outline:2px solid #796a49; outline-offset:3px; }
+.banner-editor [hidden] { display:none; }
+@media(max-width:560px) { .banner-editor__row { grid-template-columns:minmax(0,1fr); gap:0; } .banner-editor .banner-editor__heading h2 { font-size:1.55rem; } }

@@ -1,0 +1,66 @@
+<section class="banner-editor" id="banner-editor" aria-labelledby="banner-editor-title">
+  <div class="banner-editor__heading">
+    <h2 id="banner-editor-title">Banner principal</h2>
+    <p class="banner-editor__intro">Atualize a apresentação da loja e confira a prévia antes de publicar.</p>
+  </div>
+  <p id="banner-status" class="banner-editor__status" role="status" aria-live="polite">Carregando configuração do banner...</p>
+  <button type="button" id="banner-retry" class="banner-editor__secondary" hidden>Tentar carregar novamente</button>
+  <form id="banner-form" class="banner-editor__form" enctype="multipart/form-data">
+    <fieldset id="banner-fields" disabled>
+      <legend class="banner-editor__legend">Conteúdo do banner</legend>
+      <div class="banner-editor__field">
+        <label for="banner-eyebrow">Texto de abertura (opcional)</label>
+        <input type="text" id="banner-eyebrow" name="eyebrow" maxlength="120" autocomplete="off">
+      </div>
+      <div class="banner-editor__field">
+        <label for="banner-title">Título</label>
+        <textarea id="banner-title" name="title" maxlength="180" rows="2" required aria-describedby="banner-title-help"></textarea>
+        <small id="banner-title-help">Até duas linhas. A segunda linha mantém o destaque em itálico.</small>
+      </div>
+      <div class="banner-editor__field">
+        <label for="banner-subtitle">Subtítulo</label>
+        <textarea id="banner-subtitle" name="subtitle" maxlength="500" rows="3" required></textarea>
+      </div>
+      <div class="banner-editor__row">
+        <div class="banner-editor__field">
+          <label for="banner-button-text">Texto do botão</label>
+          <input type="text" id="banner-button-text" name="buttonText" maxlength="80" required autocomplete="off">
+        </div>
+        <div class="banner-editor__field">
+          <label for="banner-button-url">Destino do botão</label>
+          <input type="text" id="banner-button-url" name="buttonUrl" maxlength="500" required autocomplete="off" spellcheck="false" aria-describedby="banner-button-help">
+          <small id="banner-button-help">Use uma âncora como #produtos, um caminho como /sacola ou um endereço HTTPS.</small>
+        </div>
+      </div>
+      <div class="banner-editor__field">
+        <label for="banner-image">Nova imagem (opcional)</label>
+        <%- include('image-upload', { inputId: 'banner-image', nameId: 'banner-image-name', helpId: 'banner-image-help', required: false, emptyText: 'Nenhuma nova imagem selecionada.' }) %>
+        <small id="banner-image-help">PNG, JPG ou WEBP, até 10 MB. A imagem atual é mantida quando você não escolhe outra.</small>
+        <button type="button" id="banner-keep-image" class="banner-editor__secondary" hidden>Usar imagem salva</button>
+      </div>
+      <div class="banner-editor__field">
+        <label for="banner-image-alt">Descrição da imagem (opcional)</label>
+        <input type="text" id="banner-image-alt" name="imageAlt" maxlength="180" autocomplete="off" aria-describedby="banner-alt-help">
+        <small id="banner-alt-help">Descreva o conteúdo relevante. Deixe vazio quando a imagem for apenas decorativa.</small>
+      </div>
+      <div class="banner-editor__field">
+        <label for="banner-caption">Frase de rodapé (opcional)</label>
+        <input type="text" id="banner-caption" name="caption" maxlength="180" autocomplete="off">
+      </div>
+      <button type="submit" id="banner-save" class="banner-editor__save">Salvar e publicar banner</button>
+    </fieldset>
+  </form>
+  <div class="banner-editor__preview">
+    <div class="banner-editor__preview-toolbar">
+      <h3>Prévia</h3>
+      <div class="banner-editor__devices" role="group" aria-label="Tamanho da prévia">
+        <button type="button" class="banner-editor__device" data-banner-viewport="1440" aria-pressed="true">Computador</button>
+        <button type="button" class="banner-editor__device" data-banner-viewport="390" aria-pressed="false">Celular</button>
+      </div>
+    </div>
+    <p class="banner-editor__preview-help">A prévia acompanha as alterações. Elas só aparecem na loja depois de salvar.</p>
+    <div class="banner-editor__preview-stage" id="banner-preview-stage">
+      <iframe id="banner-preview" class="banner-editor__preview-frame" title="Prévia do banner principal" src="/admin/banner/previa" width="1440" height="700"></iframe>
+    </div>
+  </div>
+</section>

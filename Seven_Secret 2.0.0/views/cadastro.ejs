@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Cadastro | Seven Secrets</title>
+
+    <!-- Fontes Externas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Favicon e CSS do Projeto -->
+    <link rel="icon" href="/img/ChatGPT Image 29 de mai. de 2026, 19_31_16.png">
+    <link rel="stylesheet" href="/css/cadastro.css">
+    
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/busca-global.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <script src="/js/modal.js"></script>
+    <link rel="stylesheet" href="/css/store-header.css">
+</head>
+
+<body>
+
+    <%- include('partials/store-header') %>
+
+    <main>
+        <div class="auth-container">
+            <h2>Meu cadastro</h2>
+            <p>Crie sua conta exclusiva</p>
+
+            <!-- Feedback universal de erro/sucesso (Texto + Ícone + Alto Contraste) -->
+            <div id="feedbackMensagem" class="feedback-box" style="display: none;" role="alert" aria-live="assertive"></div>
+
+            <form novalidate>
+                <div class="form-group">
+                    <label for="nomeCompleto">
+                        <i data-lucide="user" aria-hidden="true"></i> Nome completo
+                    </label>
+                    <input type="text" id="nomeCompleto" placeholder="Jorginho do Balacobaco" required>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group group-cpf">
+                        <label for="cpf">
+                            <i data-lucide="id-card" aria-hidden="true"></i> CPF
+                        </label>
+                        <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" autocomplete="off" required>
+                    </div>
+                    
+                    <div class="form-group group-data">
+                        <label>
+                            <i data-lucide="calendar" aria-hidden="true"></i> Data de nascimento
+                        </label>
+                        <div class="data-split-container">
+                            <input type="text" id="dataDia" placeholder="DD" maxlength="2" autocomplete="off" aria-label="Dia de nascimento" required>
+                            <input type="text" id="dataMes" placeholder="MM" maxlength="2" autocomplete="off" aria-label="Mês de nascimento" required>
+                            <input type="text" id="dataAno" placeholder="AAAA" maxlength="4" autocomplete="off" aria-label="Ano de nascimento" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">
+                        <i data-lucide="mail" aria-hidden="true"></i> E-mail
+                    </label>
+                    <input type="email" id="email" placeholder="jorginho@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">
+                        <i data-lucide="lock" aria-hidden="true"></i> Senha
+                    </label>
+                    <input type="password" id="senha" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn-cadastrar">
+                    <i data-lucide="user-plus" aria-hidden="true"></i> Cadastrar
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Script de validação front-end acessível  -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Renderiza os ícones do Lucide
+            if (window.lucide) lucide.createIcons();
+
+            const form = document.querySelector('form');
+            const nomeInput = document.getElementById('nomeCompleto');
+            const cpfInput = document.getElementById('cpf');
+            const diaInput = document.getElementById('dataDia');
+            const mesInput = document.getElementById('dataMes');
+            const anoInput = document.getElementById('dataAno');
+            const emailInput = document.getElementById('email');
+            const senhaInput = document.getElementById('senha');
+            const feedbackBox = document.getElementById('feedbackMensagem');
+
+            // Função de feedback acessível (Design Universal: Ícone + Prefixo + Texto)
+            function exibirFeedback(mensagem, tipo = 'erro') {
+                feedbackBox.style.display = 'flex';
+                feedbackBox.className = `feedback-box feedback-${tipo}`;
+                
+                const isErro = tipo === 'erro';
+                const icone = isErro ? 'alert-triangle' : 'check-circle-2';
+                const prefixo = isErro ? 'Erro:' : 'Sucesso:';
+
+                feedbackBox.innerHTML = `
+                    <i data-lucide="${icone}" aria-hidden="true"></i>
+                    <span><strong>${prefixo}</strong> ${mensagem}</span>
+                `;
+                
+                if (window.lucide) lucide.createIcons();
+                feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            function limparFeedback() {
+                feedbackBox.style.display = 'none';
+                feedbackBox.innerHTML = '';
+            }
+
+            // MÁSCARA DO CPF EM TEMPO REAL
+            cpfInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length === 0) {
+                    e.target.value = "";
+                    return;
+                }
+                if (value.length > 11) value = value.slice(0, 11);
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                e.target.value = value;
+            });
+
+            // NAVEGAÇÃO AUTOMÁTICA DA DATA (AUTO-TAB)
+            const inputsData = [diaInput, mesInput, anoInput];
+            inputsData.forEach((input, index) => {
+                input.addEventListener('input', (e) => {
+                    e.target.value = e.target.value.replace(/\D/g, '');
+                    const maxLength = parseInt(input.getAttribute('maxlength'));
+                    if (e.target.value.length === maxLength && index < inputsData.length - 1) {
+                        inputsData[index + 1].focus();
+                    }
+                });
+            });
+
+            // ALGORITMO DE VALIDAÇÃO DO CPF
+            function validarCPF(strCPF) {
+                let soma = 0;
+                let resto;
+                strCPF = strCPF.replace(/\D/g, '');
+
+                if (strCPF === "00000000000" || strCPF.length !== 11) return false;
+
+                for (let i = 1; i <= 9; i++) soma = soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+                resto = (soma * 10) % 11;
+                if ((resto === 10) || (resto === 11)) resto = 0;
+                if (resto !== parseInt(strCPF.substring(9, 10))) return false;
+
+                soma = 0;
+                for (let i = 1; i <= 10; i++) soma = soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+                resto = (soma * 10) % 11;
+                if ((resto === 10) || (resto === 11)) resto = 0;
+                if (resto !== parseInt(strCPF.substring(10, 11))) return false;
+                
+                return true;
+            }
+
+            // VALIDAÇÃO DE DATA REAL
+            function verificarDataValida(dia, mes, ano) {
+                const d = parseInt(dia, 10);
+                const m = parseInt(mes, 10) - 1;
+                const a = parseInt(ano, 10);
+                
+                const dataObjeto = new Date(a, m, d);
+                return dataObjeto.getFullYear() === a && dataObjeto.getMonth() === m && dataObjeto.getDate() === d;
+            }
+
+            // SUBMISSÃO DO FORMULÁRIO COM VALIDAÇÃO SEQUENCIAL CORRETA
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                limparFeedback();
+
+                const nomeValor = nomeInput ? nomeInput.value.trim() : '';
+                const cpfValor = cpfInput ? cpfInput.value.trim() : '';
+
+                // 1. Validação do Nome Completo
+                if (!nomeValor) {
+                    nomeInput.focus();
+                    return exibirFeedback('Por favor, preencha o seu nome completo.', 'erro');
+                }
+
+                // 2. Validação do CPF
+                if (!validarCPF(cpfValor)) {
+                    cpfInput.focus();
+                    return exibirFeedback('Informe um número de CPF válido (ex: 000.000.000-00).', 'erro');
+                }
+
+                // 3. Validação da Data de Nascimento
+                if (!verificarDataValida(diaInput.value, mesInput.value, anoInput.value)) {
+                    diaInput.focus();
+                    return exibirFeedback('Informe uma data de nascimento válida.', 'erro');
+                }
+
+                // 4. Validação do E-mail
+                if (!emailInput.value.trim()) {
+                    emailInput.focus();
+                    return exibirFeedback('Por favor, informe um endereço de e-mail válido.', 'erro');
+                }
+
+                // 5. Validação da Senha
+                if (!senhaInput.value || senhaInput.value.length < 8) {
+                    senhaInput.focus();
+                    return exibirFeedback('A senha deve conter no mínimo 8 caracteres.', 'erro');
+                }
+
+                const dados = {
+                    nome: nomeValor,
+                    cpf: cpfValor,
+                    email: emailInput.value.trim(),
+                    senha: senhaInput.value,
+                    nascimento: `${anoInput.value}-${mesInput.value.padStart(2,'0')}-${diaInput.value.padStart(2,'0')}`
+                };
+
+                try {
+                    const r = await fetch('/api/cadastro', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(dados)
+                    });
+                    const j = await r.json();
+                    if (!r.ok) throw new Error(j.erro);
+
+                    exibirFeedback('Cadastro realizado com sucesso! Redirecionando...', 'sucesso');
+                    setTimeout(() => { location.href = '/'; }, 1500);
+                } catch(err) {
+                    exibirFeedback(err.message || 'Não foi possível concluir o cadastro.', 'erro');
+                }
+            });
+        });
+    </script>
+    <script src="/js/busca-global.js" defer></script>
+    <%- include("partials/modal") %>
+</body>
+
+</html>

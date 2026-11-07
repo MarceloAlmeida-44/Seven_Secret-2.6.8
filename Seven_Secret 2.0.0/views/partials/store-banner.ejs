@@ -1,0 +1,75 @@
+
+<section
+    class="brand-hero"
+    role="region"
+    tabindex="0"
+    aria-label="Banner principal da Seven Secrets"
+    aria-labelledby="hero-title"
+    aria-describedby="hero-subtitle"
+>
+
+    <div class="hero-copy">
+
+        <p
+            class="eyebrow"
+            data-banner-eyebrow
+            <%= banner.eyebrow ? '' : 'hidden' %>
+        >
+            <%= banner.eyebrow %>
+        </p>
+
+        <h1 id="hero-title" data-banner-title>
+            <% String(banner.title).split('\n').forEach((line,index)=>{ %>
+                <% if(index){ %>
+                    <br>
+                    <em><%= line %></em>
+                <% }else{ %>
+                    <%= line %>
+                <% } %>
+            <% }); %>
+        </h1>
+
+        <p id="hero-subtitle" data-banner-subtitle>
+            <%= banner.subtitle %>
+        </p>
+
+        <a
+            class="primary-link"
+            href="<%= banner.buttonUrl %>"
+            data-banner-button
+        >
+            <span data-banner-button-text>
+                <%= banner.buttonText %>
+            </span>
+
+            <span aria-hidden="true">↗</span>
+        </a>
+
+    </div>
+
+    <div class="hero-art">
+
+        <span class="hero-word" aria-hidden="true">
+            Secrets
+        </span>
+
+        <img
+            src="<%= banner.image %>"
+            alt="<%= banner.imageAlt || 'Imagem ilustrativa da coleção Seven Secrets' %>"
+            width="700"
+            height="850"
+            fetchpriority="high"
+            data-banner-image
+        >
+
+    </div>
+
+    <span
+        class="hero-caption"
+        data-banner-caption
+        <%= banner.caption ? '' : 'hidden' %>
+    >
+        <%= banner.caption %>
+    </span>
+
+</section>

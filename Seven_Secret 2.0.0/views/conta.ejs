@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Seven Secrets</title>
+
+    <!-- Fontes Externas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Favicon e Estilos -->
+    <link rel="icon" href="/img/ChatGPT Image 29 de mai. de 2026, 19_31_16.png">
+    <link rel="stylesheet" href="/css/conta.css">
+    
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/busca-global.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <script src="/js/modal.js"></script>
+    <link rel="stylesheet" href="/css/store-header.css">
+</head>
+
+<body>
+
+    <%- include('partials/store-header') %>
+
+    <main>
+        <div class="auth-container">
+            <h2>Já sou cliente</h2>
+            <p class="subtitle">Acesse sua conta exclusiva</p>
+
+            <!-- Feedback universal de erro/sucesso (Texto + Ícone + Alto Contraste) -->
+            <div id="feedbackMensagem" class="feedback-box" style="display: none;" role="alert" aria-live="assertive"></div>
+
+            <form novalidate>
+                <div class="form-group">
+                    <label for="email">
+                        <i data-lucide="mail" aria-hidden="true"></i> E-mail
+                    </label>
+                    <input type="email" id="email" placeholder="exemplo@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">
+                        <i data-lucide="lock" aria-hidden="true"></i> Senha
+                    </label>
+                    <input type="password" id="senha" placeholder="••••••••" required>
+                </div>
+
+                <a href="#" class="forgot-pass">
+                    <i data-lucide="help-circle" aria-hidden="true"></i> Esqueceu a senha?
+                </a>
+
+                <button type="submit" class="btn-entrar">
+                    <i data-lucide="log-in" aria-hidden="true"></i> Entrar
+                </button>
+            </form>
+
+            <div class="signup-text">
+                Você é novo aqui? <a href="/cadastro">Cadastrar</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts de Interação do Front-end -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) lucide.createIcons();
+
+            const form = document.querySelector('form');
+            const emailInput = document.getElementById('email');
+            const senhaInput = document.getElementById('senha');
+            const esqueceuSenhaLink = document.querySelector('.forgot-pass');
+            const feedbackBox = document.getElementById('feedbackMensagem');
+
+            // Exibição de avisos acessíveis para daltônicos
+            function exibirFeedback(mensagem, tipo = 'erro') {
+                feedbackBox.style.display = 'flex';
+                feedbackBox.className = `feedback-box feedback-${tipo}`;
+                
+                const isErro = tipo === 'erro';
+                const isAviso = tipo === 'aviso';
+                const icone = isErro ? 'alert-triangle' : (isAviso ? 'info' : 'check-circle-2');
+                const prefixo = isErro ? 'Erro:' : (isAviso ? 'Aviso:' : 'Sucesso:');
+
+                feedbackBox.innerHTML = `
+                    <i data-lucide="${icone}" aria-hidden="true"></i>
+                    <span><strong>${prefixo}</strong> ${mensagem}</span>
+                `;
+                
+                if (window.lucide) lucide.createIcons();
+                feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            function limparFeedback() {
+                feedbackBox.style.display = 'none';
+                feedbackBox.innerHTML = '';
+            }
+
+            // INTERAÇÃO DE RECUPERAÇÃO DE SENHA
+            esqueceuSenhaLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                limparFeedback();
+                
+                const emailValor = emailInput.value.trim();
+                
+                if (emailValor === "") {
+                    exibirFeedback('Por favor, preencha o campo de e-mail antes de solicitar a recuperação de senha.', 'aviso');
+                    emailInput.focus();
+                } else {
+                    exibirFeedback('A recuperação de senha ainda não está disponível no sistema. Entre em contato com o suporte da loja.', 'aviso');
+                }
+            });
+
+            // SUBMISSÃO DE LOGIN
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                limparFeedback();
+
+                const email = emailInput.value.trim();
+                const senha = senhaInput.value;
+
+                if (!email) {
+                    return exibirFeedback('Por favor, digite o seu e-mail de acesso.', 'erro');
+                }
+                if (!senha) {
+                    return exibirFeedback('Por favor, digite a sua senha.', 'erro');
+                }
+
+                try {
+                    const r = await fetch('/api/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, senha })
+                    });
+                    const j = await r.json();
+                    if (!r.ok) throw new Error(j.erro);
+
+                    exibirFeedback('Login realizado com sucesso! Redirecionando...', 'sucesso');
+                    setTimeout(() => { location.href = '/editar-conta'; }, 1000);
+                } catch(err) {
+                    exibirFeedback(err.message || 'Falha ao efetuar login. Verifique suas credenciais.', 'erro');
+                }
+            });
+        });
+    </script>
+
+    <script src="/js/busca-global.js" defer></script>
+    <%- include("partials/modal") %>
+</body>
+
+</html>

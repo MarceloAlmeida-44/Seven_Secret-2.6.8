@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacola de Compras | Seven Secrets</title>
+    
+    <!-- Fontes Externas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Scripts Externos -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <!-- Favicon e Estilos -->
+    <link rel="icon" href="/img/ChatGPT Image 29 de mai. de 2026, 19_31_16.png">
+    <link rel="stylesheet" href="/css/sacola.css">
+    <link rel="stylesheet" href="/css/busca-global.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <script src="/js/modal.js"></script>
+    <link rel="stylesheet" href="/css/store-header.css">
+</head>
+<body>
+
+    <%- include('partials/store-header') %>
+
+    <main>
+        <div class="cart-container">
+            <div class="cart-items-section">
+                <h1 class="cart-title">
+                    <i data-lucide="shopping-bag" aria-hidden="true"></i> Sua Sacola
+                </h1>
+                
+                <!-- Os itens entram aqui dinamicamente pelo JavaScript (sacola.js) -->
+                <section class="listaProdutos"></section>
+                
+                <a href="/" class="keep-shopping">
+                    <i data-lucide="arrow-left" aria-hidden="true"></i> Continuar Comprando
+                </a>
+            </div>
+
+            <div class="cart-summary">
+
+                <h2 class="summary-title">RESUMO DO PEDIDO</h2>
+
+                <!-- CEP -->
+                <div class="summary-block">
+                    <label for="input-cep">
+                        <i data-lucide="map-pin" aria-hidden="true"></i> Calcule o Frete (CEP)
+                    </label>
+                    <div class="input-group">
+                        <input type="text" id="input-cep" placeholder="00000-000" maxlength="9">
+                        <button type="button" id="btn-cep" class="btn-inline confirm-btn">
+                            Confirmar
+                        </button>
+                    </div>
+                    <!-- Área de feedback acessível (Design Universal) -->
+                    <div id="endereco-texto" class="shipping-feedback" style="display: none;" aria-live="polite"></div>
+                </div>
+
+                <!-- CUPOM -->
+                <div class="summary-block">
+                    <label for="input-cupom">
+                        <i data-lucide="ticket" aria-hidden="true"></i> Cupom de Desconto
+                    </label>
+                    <div class="input-group">
+                        <input type="text" id="input-cupom" placeholder="Ex: SECRETS10">
+                        <button type="button" id="btn-cupom" class="btn-inline confirm-btn">
+                            Confirmar
+                        </button>
+                    </div>
+                    <!-- Área de feedback acessível (Design Universal) -->
+                    <div class="coupon-feedback" id="cupom-texto" style="display: none;" aria-live="polite"></div>
+                </div>
+
+                <hr class="summary-divider">
+
+                <!-- SUBTOTAL -->
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="valor-subtotal">R$ 0,00</span>
+                </div>
+
+                <!-- FRETE -->
+                <div class="summary-row">
+                    <span>Frete</span>
+                    <span id="valor-frete">R$ 0,00</span>
+                </div>
+
+                <!-- DESCONTO -->
+                <div class="summary-row discount-row" id="linha-desconto" style="display: none;">
+                    <span>
+                        <i data-lucide="tag" aria-hidden="true" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></i> Desconto (10%)
+                    </span>
+                    <span id="valor-desconto">R$ 0,00</span>
+                </div>
+
+                <hr class="summary-divider">
+
+                <!-- TOTAL -->
+                <div class="summary-row total-row">
+                    <span>TOTAL</span>
+                    <span id="valor-total">R$ 0,00</span>
+                </div>
+
+                <!-- BOTÃO DE CHECKOUT -->
+                <a href="/finalizar-compra" id="link-checkout" class="finalizar">
+                    <button class="btn-checkout">
+                        <i data-lucide="check-circle" aria-hidden="true"></i> FINALIZAR COMPRA
+                    </button>
+                </a>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts de front-end -->
+    <script src="/js/ViaCEP.js"></script>
+    <script src="/js/sacola.js"></script>
+
+    <!-- Inicialização dos Ícones Lucide -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) lucide.createIcons();
+        });
+    </script>
+    
+    <script src="/js/busca-global.js" defer></script>
+    <%- include("partials/modal") %>
+</body>
+</html>

@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= produto.nome %> | Seven Secrets</title>
+
+    <!-- Fontes externas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/busca-global.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/css/store-header.css">
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="/js/modal.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Cabeçalho -->
+    <%- include('partials/store-header') %>
+
+    <main class="product-page">
+
+        <!-- Voltar ao catálogo -->
+        <a href="/#produtos" class="details-link">
+            ← Voltar ao catálogo
+        </a>
+
+        <!-- Informações do produto -->
+        <section
+            class="product-detail"
+            aria-labelledby="product-title"
+        >
+
+            <!-- Imagem -->
+            <div class="detail-image">
+                <img
+                    src="<%= produto.imagem %>"
+                    alt="Imagem do produto <%= produto.nome %>"
+                    width="700"
+                    height="700"
+                    tabindex="0"
+                >
+            </div>
+
+            <!-- Detalhes -->
+            <div class="detail-copy">
+
+                <% if (produto.destaque) { %>
+                    <span class="badge-featured" tabindex="0">
+                        Destaque
+                    </span>
+                <% } %>
+
+                <!-- Categoria -->
+                <p class="eyebrow" tabindex="0">
+                    <%= produto.tipo %>
+                </p>
+
+                <!-- Nome -->
+                <h1 id="product-title" tabindex="0">
+                    <%= produto.nome %>
+                </h1>
+
+                <!-- Capacidade -->
+                <p class="card-volume" tabindex="0">
+                    <%= produto.capacidade %>
+                </p>
+
+                <!-- Descrição -->
+                <p class="detail-description" tabindex="0">
+                    <%= produto.descricao %>
+                </p>
+
+                <!-- Preços -->
+                <p class="card-price" tabindex="0">
+
+                    <% if (produto.desconto !== null && produto.desconto !== undefined) { %>
+
+                        <s>
+                            Preço original:
+                            <%= Number(produto.preco).toLocaleString('pt-BR', {
+                                style: 'currency',
+                                currency: 'BRL'
+                            }) %>
+                        </s>
+
+                    <% } %>
+
+                    <strong>
+                        Preço atual:
+                        <%= Number(produto.desconto ?? produto.preco).toLocaleString('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL'
+                        }) %>
+                    </strong>
+
+                </p>
+
+                <!-- Estoque -->
+                <p tabindex="0">
+                    <%= Number(produto.estoque) > 0
+                        ? 'Disponível em estoque'
+                        : 'Produto esgotado' %>
+                </p>
+
+                <!-- Adicionar à sacola -->
+                <button
+                    type="button"
+                    class="add-to-bag"
+                    data-id="<%= produto.id %>"
+                    aria-label="Adicionar <%= produto.nome %> à sacola"
+                    <%= Number(produto.estoque) <= 0 ? 'disabled' : '' %>
+                >
+                    <%= Number(produto.estoque) <= 0
+                        ? 'Sem estoque'
+                        : 'Adicionar à sacola' %>
+                </button>
+
+                <!-- Ir para a sacola -->
+                <a href="/sacola" class="details-link">
+                    Ir para a sacola →
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <%- include('partials/store-footer') %>
+
+    <!-- Modal -->
+    <%- include('partials/modal') %>
+
+    <!-- Scripts finais -->
+    <script src="/js/index.js" defer></script>
+    <script src="/js/busca-global.js" defer></script>
+
+</body>
+</html>

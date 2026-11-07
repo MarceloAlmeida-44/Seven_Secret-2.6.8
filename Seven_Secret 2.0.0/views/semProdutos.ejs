@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seven Secrets | A Alta Perfumaria Exclusiva</title>
+   
+    <!-- Fontes Externas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Favicon e CSS -->
+    <link rel="icon" href="/img/ChatGPT Image 29 de mai. de 2026, 19_31_16.png">
+    <link rel="stylesheet" href="/css/semProdutos.css">
+
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/busca-global.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <script src="/js/modal.js"></script>
+<link rel="stylesheet" href="/css/store-header.css">
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <%- include('partials/store-header') %>
+
+    <main id="colecao">
+       
+        <!-- PRODUTO 1 -->
+        <section class="perfume-section p-odd perfume-card">
+            <span class="section-number"></span>
+            <div class="content-block">
+                <img src="/img/image 42.png" alt="sem estoque" class="sobre">
+                <span class="olftative-family">Floral Frutado</span>
+                <h2><span>Extâse</span></h2>
+                <p>Uma fusão envolvente de rosas e framboesas maduras. Esta fragrância é uma celebração da paixão e da alegria, ideal para quem busca uma presença radiante e inesquecível.</p>
+                <div class="price">
+                    <h3 class="full_price"><s> R$ 699,99 </s></h3>
+                    <h3 class="discount">R$ 499,99</h3>
+                </div>
+                <a href="#" class="btn-discover">Adicionar ao Carrinho</a>
+            </div>
+            <div class="image-wrapper">
+                <div class="perfume-image" style="background-image: url('/img/Extase.png');"></div>
+            </div>
+        </section>
+
+        <!-- PRODUTO 2 -->
+        <section class="perfume-section p-even perfume-card">
+            <span class="section-number"></span>
+            <div class="content-block">
+                <img src="/img/image 42.png" alt="sem estoque" class="sobre">
+                <span class="olftative-family">Fresco Vibrante</span>
+                <h2><span>Trend</span></h2>
+                <p>A frescura das flores brancas em harmonia com notas amadeiradas secas, flutuando sobre uma base líquida azul vibrante. Um perfume moderno e dinâmico, perfeito para quem dita tendências.</p>
+                <h3 class="full_price"><s>R$ 659,99</s></h3>
+                <h3 class="discount">R$ 499,99</h3>
+                <a href="#" class="btn-discover">Adicionar ao Carrinho</a>
+            </div>
+            <div class="image-wrapper">
+                <div class="perfume-image" style="background-image: url('/img/Trend.png');"></div>
+            </div>
+        </section>
+
+        <!-- PRODUTO 3 -->
+        <section class="perfume-section p-odd perfume-card">
+            <span class="section-number"></span>
+            <div class="content-block">
+                <img src="/img/image 42.png" alt="sem estoque" class="sobre">
+                <span class="olftative-family">Floral Refinado</span>
+                <h2><span>Lavin</span></h2>
+                <p>Um bouquet sofisticado que une a suavidade da lavanda à elegância do jasmim. Esta fragrância oferece um rastro atemporal e refinado, para quem aprecia o luxo discreto.</p>
+                <h3 class="full_price"><s>R$ 599,99</s></h3>
+                <h3 class="discount">R$ 499,99</h3>
+                <a href="#" class="btn-discover">Adicionar ao Carrinho</a>
+            </div>
+            <div class="image-wrapper">
+                <div class="perfume-image" style="background-image: url('/img/Lavin.png');"></div>
+            </div>
+        </section>
+
+        <!-- PRODUTO 4 -->
+        <section class="perfume-section p-even perfume-card">
+            <span class="section-number"></span>
+            <div class="content-block">
+                <img src="/img/image 42.png" alt="sem estoque" class="sobre">
+                <span class="olftative-family">Herbáceo Marcante</span>
+                <h2><span>Adamantium</span></h2>
+                <p>Uma essência verde e musgosa, com a presença marcante de ramos de lavanda sobre uma base de carvalho rústico. Um perfume que evoca a força da natureza e uma masculinidade autêntica.</p>
+                <h3 class="full_price"><s>R$ 699,99</s></h3>
+                <h3 class="discount">R$ 499,99</h3>
+                <a href="#" class="btn-discover">Adicionar ao Carrinho</a>
+            </div>
+            <div class="image-wrapper">
+                <div class="perfume-image" style="background-image: url('/img/Adamantium.png');"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- OVERLAY DE BUSCA -->
+
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="footer-simple">
+            <div class="footer-logo">Seven Secrets</div>
+           
+            <nav class="footer-nav">
+                <a href="/sem-produtos">A Marca</a>
+                <a href="#">Contato</a>
+                <a href="#">Privacidade</a>
+            </nav>
+
+            <div class="footer-socials">
+                <a href="#"><i data-lucide="instagram"></i></a>
+                <a href="#"><i data-lucide="facebook"></i></a>
+                <a href="#"><i data-lucide="twitter"></i></a>
+            </div>
+
+            <p class="copyright">Seven Secrets &copy; 2026. Alta Perfumaria Exclusiva.</p>
+        </div>
+    </footer>
+
+    <!-- INTERAÇÕES E ÍCONES -->
+    
+    <script src="/js/busca-global.js" defer></script>
+  <%- include("partials/modal") %>
+</body>
+</html>

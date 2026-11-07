@@ -1,0 +1,26 @@
+{
+  "name": "seven-secrets",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Loja Seven Secrets com envio de confirmação de pedido por e-mail",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "db:migrate": "node scripts/migrar-destaque.js",
+    "db:migrate:banner": "node scripts/migrar-banner.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "multer": "^2.4.0",
+    "mysql2": "^3.15.0",
+    "nodemailer": "^10.1.7",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.10"
+  }
+}

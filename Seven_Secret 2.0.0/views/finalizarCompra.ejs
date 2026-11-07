@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Endereço | Seven Secrets</title>
+    
+    <!-- Fontes Externas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Ícones Lucide e Favicon -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" href="/img/ChatGPT Image 29 de mai. de 2026, 19_31_16.png">
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="/css/finalizarCompra.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <script src="/js/modal.js"></script>
+    <link rel="stylesheet" href="/css/store-header.css">
+    <link rel="stylesheet" href="/css/busca-global.css">
+</head>
+<body>
+
+    <%- include('partials/store-header') %>
+
+    <main>
+        <div class="checkout-box">
+            <div class="step-indicator">
+                <span class="active">Sacola</span> > <span class="active">Endereço</span> > <span>Pagamento</span>
+            </div>
+            
+            <h1 class="page-title">Entrega</h1>
+            <p class="page-subtitle">Confirme ou insira o endereço de envio do seu pedido</p>
+            
+            <!-- Caixa de Feedback Acessível (Design Universal: Ícone + Prefixo + Texto) -->
+            <div id="feedbackMensagem" class="feedback-box" style="display: none;" role="alert" aria-live="assertive"></div>
+
+            <form class="address-form" id="form-entrega" action="#" method="POST" novalidate>    
+                <div class="form-row-cep">
+                    <div class="input-wrapper">
+                        <label for="cep">
+                            <i data-lucide="map-pin" aria-hidden="true"></i> CEP
+                        </label>
+                        <input type="text" id="cep" placeholder="00000-000" required maxlength="9">
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="numero">
+                            <i data-lucide="hash" aria-hidden="true"></i> Número
+                        </label>
+                        <input type="text" id="numero" placeholder="Ex: 123" required>
+                    </div>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="rua">
+                        <i data-lucide="navigation" aria-hidden="true"></i> Endereço
+                    </label>
+                    <input type="text" id="rua" placeholder="Nome da rua ou avenida" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="complemento">
+                        <i data-lucide="building-2" aria-hidden="true"></i> Complemento (Opcional)
+                    </label>
+                    <input type="text" id="complemento" placeholder="Apto, bloco, casa...">
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="bairro">
+                        <i data-lucide="map" aria-hidden="true"></i> Bairro
+                    </label>
+                    <input type="text" id="bairro" placeholder="Seu bairro" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-wrapper">
+                        <label for="cidade">
+                            <i data-lucide="building" aria-hidden="true"></i> Cidade
+                        </label>
+                        <input type="text" id="cidade" placeholder="Cidade" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="estado">
+                            <i data-lucide="globe" aria-hidden="true"></i> Estado
+                        </label>
+                        <input type="text" id="estado" placeholder="UF" required maxlength="2">
+                    </div>
+                </div>        
+
+                <div class="payment-section">
+                    <label class="section-label">
+                        <i data-lucide="wallet" aria-hidden="true"></i> Forma de Pagamento
+                    </label>
+                    
+                    <div class="payment-options">
+                        <div class="payment-card active" data-method="pix" tabindex="0" role="radio" aria-checked="true">
+                            <i data-lucide="qr-code" aria-hidden="true"></i>
+                            <div class="payment-info">
+                                <span class="payment-title">Pix</span>
+                                <span class="payment-desc">Aprovação instantânea</span>
+                            </div>
+                            <div class="custom-radio"></div>
+                        </div>
+
+                        <div class="payment-card" data-method="cartao" tabindex="0" role="radio" aria-checked="false">
+                            <i data-lucide="credit-card" aria-hidden="true"></i>
+                            <div class="payment-info">
+                                <span class="payment-title">Cartão de Crédito</span>
+                                <span class="payment-desc">Até 12x sem juros</span>
+                            </div>
+                            <div class="custom-radio"></div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="forma-pagamento" name="forma_pagamento" value="pix">
+                </div>
+                
+                <p id="texto-total-checkout" style="font-size: 0.95rem; text-align: center; color: #111; margin-bottom: 15px; font-weight: 700;">
+                    Total a pagar: Carregando...
+                </p>
+
+                <div class="actions-container">
+                    <button type="submit" class="btn-primary" id="btn-finalizar">
+                        <i data-lucide="check-circle" aria-hidden="true"></i> Registrar pedido (pagamento pendente)
+                    </button>
+                    <a href="/sacola" class="btn-back">
+                        <i data-lucide="arrow-left" aria-hidden="true"></i> Voltar para a Sacola
+                    </a>
+                </div>                          
+            </form>
+        </div>
+    </main>
+
+    <!-- Scripts de front-end -->
+    <script src="/js/ViaCEP.js"></script>
+    <script src="/js/finalizarCompra.js"></script>
+
+    <!-- Inicialização dos ícones Lucide -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) lucide.createIcons();
+        });
+    </script>
+    <%- include("partials/modal") %>
+    <script src="/js/busca-global.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+
+[hidden] {
+    display: none !important;
+}
+
+
+.pix-qr {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.pix-qr img {
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: #fff;
+}
+
+
+.pix-resumo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+.pix-resumo-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    font-weight: 600;
+    margin-top: 8px;
+}
+.pix-resumo-valor {
+    font-size: 0.85rem;
+    font-weight: 600;
+    word-break: break-all;
+}
+.pix-total {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+
+.pix-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    font-size: 0.8rem;
+    color: #666;
+    letter-spacing: 0.5px;
+}
+.pix-pulse {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    animation: pix-pulse 1.4s ease-in-out infinite;
+}
+@keyframes pix-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.25; transform: scale(0.6); }
+}
+
+
+.pix-copia {
+    margin-bottom: 10px;
+}
+.pix-copia-linha {
+    display: flex;
+    gap: 10px;
+}
+.pix-copia-linha input {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.75rem;
+}
+.btn-copiar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 18px;
+    background: #fff;
+    color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+.btn-copiar:hover {
+    background: #000;
+    color: #fff;
+}
+.btn-copiar i {
+    width: 14px;
+    height: 14px;
+}
+
+
+.pix-pago {
+    text-align: center;
+}
+.pix-check {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+}
+.pix-check i {
+    width: 34px;
+    height: 34px;
+}
+.pix-pago .page-subtitle {
+    margin-bottom: 25px;
+}
+.pix-email {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .pix-copia-linha { flex-direction: column; }
+    .btn-copiar { justify-content: center; padding: 14px; }
+}

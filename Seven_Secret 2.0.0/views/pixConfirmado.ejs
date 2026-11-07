@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento confirmado | Seven Secrets</title>
+
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" href="/img/ChatGPT Image 29 de mai. de 2026, 19_31_16.png">
+
+  
+    <link rel="stylesheet" href="/css/finalizarCompra.css">
+    <link rel="stylesheet" href="/css/pagamentoPix.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <script src="/js/modal.js"></script>
+<link rel="stylesheet" href="/css/store-header.css">
+<link rel="stylesheet" href="/css/busca-global.css">
+</head>
+<body>
+
+    <%- include('partials/store-header') %>
+
+    <main>
+        <div class="checkout-box">
+            <section class="pix-pago">
+                <div class="pix-check"><i data-lucide="check"></i></div>
+                <h1 class="page-title">Pagamento confirmado!</h1>
+                <p class="page-subtitle">Pedido <strong><%= pedido.numero %></strong> pago com sucesso.</p>
+
+                <div class="pix-resumo">
+                    <span class="pix-resumo-label">Total pago</span>
+                    <span class="pix-resumo-valor pix-total"><%= Number(pedido.total).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %></span>
+                </div>
+
+                <p class="pix-email">
+                    <%= pedido.emailEnviado ? 'Enviamos os dados do pedido para o e-mail cadastrado.' : 'Pedido pago, mas não foi possível enviar o e-mail agora.' %>
+                </p>
+            </section>
+
+            <div class="actions-container">
+                <a href="/" class="btn-back"><i data-lucide="arrow-left"></i> Voltar para a loja</a>
+            </div>
+        </div>
+    </main>
+  <%- include("partials/modal") %>
+<script src="/js/busca-global.js" defer></script>
+</body>
+</html>

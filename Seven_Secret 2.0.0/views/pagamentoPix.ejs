@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento Pix | Seven Secrets</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" href="/img/ChatGPT Image 29 de mai. de 2026, 19_31_16.png">
+
+  
+    <link rel="stylesheet" href="/css/finalizarCompra.css">
+    <link rel="stylesheet" href="/css/pagamentoPix.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <script src="/js/modal.js"></script>
+<link rel="stylesheet" href="/css/store-header.css">
+<link rel="stylesheet" href="/css/busca-global.css">
+</head>
+<body>
+
+    <%- include('partials/store-header') %>
+
+    <main>
+        <div class="checkout-box" id="pix-pagamento" data-pedido="<%= pedido.numero %>" data-email="<%= pedido.email %>">
+            <div class="step-indicator">
+                <span class="active">Sacola</span> > <span class="active">Endereço</span> > <span class="active">Pagamento</span>
+            </div>
+
+            <!-- Aguardando o pagamento -->
+            <section id="pix-aguardando" <%- pedido.status === 'Pago' ? 'hidden' : '' %>>
+                <h1 class="page-title">Pagamento via Pix</h1>
+                <p class="page-subtitle">Escaneie o QR Code com a câmera do celular para pagar</p>
+
+                <div class="pix-qr">
+                    <img src="<%= qrcode %>" alt="QR Code para pagamento via Pix" width="260" height="260">
+                </div>
+
+                <div class="pix-resumo">
+                    <span class="pix-resumo-label">Pedido</span>
+                    <span class="pix-resumo-valor"><%= pedido.numero %></span>
+                    <span class="pix-resumo-label">Total a pagar</span>
+                    <span class="pix-resumo-valor pix-total"><%= Number(pedido.total).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %></span>
+                </div>
+
+                <p class="pix-status"><span class="pix-pulse"></span> Aguardando pagamento...</p>
+
+                <div class="input-wrapper pix-copia">
+                    <label for="pix-link">Pix copia e cola</label>
+                    <div class="pix-copia-linha">
+                        <input type="text" id="pix-link" value="<%= link %>" readonly>
+                        <button type="button" class="btn-copiar" id="btn-copiar"><i data-lucide="copy"></i> Copiar</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pagamento confirmado -->
+            <section id="pix-pago" class="pix-pago" <%- pedido.status === 'Pago' ? '' : 'hidden' %>>
+                <div class="pix-check"><i data-lucide="check"></i></div>
+                <h1 class="page-title">Pagamento confirmado!</h1>
+                <p class="page-subtitle">Pedido <strong><%= pedido.numero %></strong> pago com sucesso.</p>
+                <p class="pix-email" id="pix-email">Enviando os dados do pedido por e-mail...</p>
+            </section>
+
+            <div class="actions-container">
+                <a href="/" class="btn-back"><i data-lucide="arrow-left"></i> Voltar para a loja</a>
+            </div>
+        </div>
+    </main>
+    <script src="/js/pagamentoPix.js"></script>
+  <%- include("partials/modal") %>
+<script src="/js/busca-global.js" defer></script>
+</body>
+</html>

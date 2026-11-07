@@ -1,0 +1,8 @@
+<div class="image-upload" data-image-upload>
+  <input type="file" id="<%= inputId %>" name="imagem" class="image-upload__input"
+    accept="image/png,image/jpeg,image/webp" aria-describedby="<%= helpId %> <%= nameId %>" <%= required ? 'required' : '' %>>
+  <label for="<%= inputId %>" class="image-upload__button">
+    <i data-lucide="upload" aria-hidden="true"></i><span>Selecionar imagem</span>
+  </label>
+  <span id="<%= nameId %>" class="image-upload__name" data-upload-name data-empty-text="<%= emptyText %>" role="status" aria-live="polite" aria-atomic="true"><%= emptyText %></span>
+</div>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração da loja | Seven Secrets</title>
+
+    <!-- Fontes Externas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Favicon e CSS do Projeto -->
+    <link rel="icon" href="/img/ChatGPT Image 29 de mai. de 2026, 19_31_16.png">
+    <link rel="stylesheet" href="/css/cadastro.css">
+    <link rel="stylesheet" href="/css/cadastroProdutos.css">
+    <link rel="stylesheet" href="/css/banner-editor.css">
+    <link rel="stylesheet" href="/css/image-upload.css">
+
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/busca-global.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <script src="/js/modal.js"></script>
+<link rel="stylesheet" href="/css/store-header.css">
+</head>
+
+<body>
+
+    <%- include('partials/store-header') %>
+
+    <main>
+        <div class="auth-container produtos-container">
+            <h2>Administração da loja</h2>
+            <p>Atualize o banner principal e gerencie os produtos do catálogo.</p>
+            <nav class="admin-sections" aria-label="Seções da administração">
+                <a href="#banner-editor">Banner principal</a>
+                <a href="#cadastro-produto">Cadastrar produto</a>
+                <a href="#produtos-cadastrados">Produtos cadastrados</a>
+            </nav>
+
+            <%- include('partials/banner-editor') %>
+
+            <h3 class="lista-titulo" id="cadastro-produto">Cadastrar produto</h3>
+
+            <form id="form-produto">
+
+                <!-- 1. IDENTIFICAÇÃO -->
+                <section class="bloco">
+                    <h3 class="bloco-titulo"><span class="bloco-num">1</span> Identificação</h3>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="nome">Nome do perfume</label>
+                            <input type="text" id="nome" placeholder="Extâse" maxlength="160" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">Tipo (família olfativa)</label>
+                            <input type="text" id="tipo" placeholder="Floral Frutado" maxlength="120" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label id="label-ml">Volume</label>
+                        <div class="ml-opcoes" role="radiogroup" aria-labelledby="label-ml">
+                            <% ['15', '30', '50', '70', '100'].forEach(ml => { %>
+                            <input type="radio" name="ml" id="ml-<%= ml %>" value="<%= ml %>ml" required>
+                            <label for="ml-<%= ml %>" class="ml-chip"><%= ml %> ml</label>
+                            <% }); %>
+                        </div>
+                        <small class="dica" id="dica-capacidade">Escolha o volume para ver como será exibido na sacola.</small>
+                    </div>
+                </section>
+
+                <!-- 2. PREÇO E ESTOQUE -->
+                <section class="bloco">
+                    <h3 class="bloco-titulo"><span class="bloco-num">2</span> Preço e estoque</h3>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="preco">Preço (R$)</label>
+                            <input type="text" id="preco" placeholder="699,99" inputmode="decimal" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="desconto">Preço promocional (opcional)</label>
+                            <input type="text" id="desconto" placeholder="499,99" inputmode="decimal" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="estoque">Estoque inicial (unidades)</label>
+                            <input type="number" id="estoque" placeholder="10" min="0" max="99999" step="1" inputmode="numeric" value="" required>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. IMAGEM E DESCRIÇÃO -->
+                <section class="bloco">
+                    <h3 class="bloco-titulo"><span class="bloco-num">3</span> Imagem e descrição</h3>
+
+                    <div class="form-group">
+                        <label for="imagem">Imagem do produto</label>
+                        <div class="upload-area">
+                            <div class="upload-preview" id="preview-imagem"></div>
+                            <%- include('partials/image-upload', { inputId: 'imagem', nameId: 'nome-arquivo', helpId: 'dica-imagem', required: true, emptyText: 'Nenhuma imagem selecionada.' }) %>
+                        </div>
+                        <small class="dica" id="dica-imagem">Recomendado: foto horizontal na proporção 33:14, como 1320 × 560 px. Imagens quadradas e verticais também são aceitas e aparecem inteiras, centralizadas na mesma área do catálogo. Use PNG, JPG ou WEBP de até 10 MB.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descricao">Descrição</label>
+                        <textarea id="descricao" rows="4" placeholder="Fale sobre as notas e a personalidade da fragrância" maxlength="2000" required></textarea>
+                    </div>
+                </section>
+
+                <label class="featured-option"><input type="checkbox" id="destaque"> Destacar este produto no catálogo</label>
+                <button type="submit" class="btn-cadastrar" id="btn-salvar">Cadastrar produto</button>
+            </form>
+
+            <h3 class="lista-titulo" id="produtos-cadastrados">Produtos cadastrados</h3>
+            <p class="lista-ajuda">Altere a quantidade em estoque e clique em <strong>Salvar</strong>. Com 0 unidade o produto aparece na loja como <strong>sem estoque</strong>. Use <strong>Desativar</strong> para tirar o produto da loja.</p>
+            <div class="lista-produtos" id="lista-produtos">
+                <div class="lista-vazia">Carregando...</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script de front-end -->
+    <script src="/js/cadastroProdutos.js"></script>
+    <script src="/js/banner-editor.js" defer></script>
+    <script src="/js/image-upload.js" defer></script>
+    <script src="/js/busca-global.js" defer></script>
+  <%- include("partials/modal") %>
+</body>
+
+</html>

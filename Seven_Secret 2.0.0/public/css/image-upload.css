@@ -1,0 +1,57 @@
+.image-upload {
+  position: relative;
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: center;
+  gap: 10px 14px;
+  width: 100%;
+  min-width: 0;
+}
+/* O campo real permanece focável para o teclado e a validação nativa. */
+.image-upload input.image-upload__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.image-upload label.image-upload__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 10px 16px;
+  border: 1px solid #d4d0c8;
+  border-radius: 4px;
+  background: #fff;
+  color: #343a2f;
+  font: 400 .74rem/1.5 'Montserrat', sans-serif;
+  letter-spacing: .3px;
+  text-transform: none;
+  cursor: pointer;
+  transition: background-color .18s, border-color .18s, color .18s;
+}
+.image-upload__button svg,
+.image-upload__button i { width: 16px; height: 16px; flex-shrink: 0; stroke-width: 1.5; }
+.image-upload__input:not(:disabled) + .image-upload__button:hover { background: #f7f6f2; border-color: #929786; }
+.image-upload__input:focus-visible + .image-upload__button { outline: 2px solid #796a49; outline-offset: 3px; }
+.image-upload__input:disabled + .image-upload__button { background: #f5f5f1; border-color: #e0ded8; color: #888b80; cursor: not-allowed; }
+.image-upload__name { display: block; min-width: 0; color: #77796f; font: 400 .72rem/1.6 'Montserrat', sans-serif; letter-spacing: 0; overflow-wrap: anywhere; }
+.image-upload[data-has-file="true"] .image-upload__name { color: #43493d; }
+.image-upload__input:disabled ~ .image-upload__name { color: #888b80; }
+@media (max-width: 560px) {
+  .image-upload { grid-template-columns: minmax(0, 1fr); gap: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .image-upload label.image-upload__button { transition: none; }
+}

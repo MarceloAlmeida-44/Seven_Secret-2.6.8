@@ -1,0 +1,550 @@
+   /* =========================
+       RESET BÁSICO
+    ========================== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: #1a1a1a; background-color: #fbfbf9; }
+
+    
+    /* =========================
+       HEADER
+    ========================== */
+
+/* HEADER */
+        
+        footer .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -1px;
+            color: #000;
+            text-decoration: none;
+        }
+        footer nav a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+    /* =========================
+       CONTEÚDO PRINCIPAL
+    ========================== */
+
+    .container{
+      width: 100%;
+      padding: 60px;
+
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    /* =========================
+       TÍTULOS DAS SEÇÕES
+    ========================== */
+
+    .section-title{
+        margin-top: 80px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section-title h2{
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .line{
+      width: 300px;
+      height: 2px;
+      background-color: #d5d5d5;
+      margin: auto;
+    }
+
+    /* =========================
+       CARD PERFIL
+    ========================== */
+
+    .profile-area{
+      width: 35%;
+    }
+
+    .profile-card{
+      margin-top: 2px;
+      background-color: white;
+      padding: 60px;
+
+      box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .profile-card h1{
+      text-align: center;
+      color: black;
+      margin-bottom: 10px;
+    }
+
+    .profile-card p{
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+
+    .input-group{
+        color: #999;
+      margin-bottom: 20px;
+    }
+
+    .input-group label{
+        color: #999;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      letter-spacing: 3px;
+    }
+
+    .input-group input{
+        color: #999;
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      padding: 8px 0;
+      background: transparent;
+      outline: none;
+    }
+
+    .double-input{
+        color: #999;
+      display: flex;
+      gap: 20px;
+    }
+
+    button{
+      width: 100%;
+      margin-top: 20px;
+      padding: 15px;
+
+      border: none;
+      background-color: #111;
+      color: white;
+
+      font-size: 16px;
+      letter-spacing: 4px;
+
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover{
+      opacity: 0.8;
+    }
+
+    /* =========================
+       HISTÓRICO DE COMPRAS
+    ========================== */
+
+    .history-area{
+      width: 60%;
+    }
+
+    .history-card{
+      background-color: white;
+      padding: 30px;
+
+      box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+
+    .history-header{
+      display: flex;
+      justify-content: space-between;
+      margin-right: 20px;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #666;
+    }
+
+    /* =========================
+       ITEM DO HISTÓRICO
+    ========================== */
+
+    .product-item{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 25px 0;
+
+      border-bottom: 1px solid #ddd;
+    }
+
+    .product-left{
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .product-left img{
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+    }
+
+    .product-info small{
+      display: block;
+      margin-bottom: 5px;
+      letter-spacing: 3px;
+      color: #888;
+    }
+
+    .product-info h3{
+      margin-bottom: 10px;
+      color: black;
+    }
+
+    .product-info p{
+      font-size: 18px;
+    }
+
+    .quantity{
+      font-size: 40px;
+      color: #444;
+
+      border-left: 1px solid #ccc;
+      padding-left: 40px;
+      min-width: 100px;
+      text-align: center;
+    }
+
+    /* =========================
+       RESPONSIVIDADE
+    ========================== */
+
+    @media(max-width: 1000px){
+
+      .container{
+        flex-direction: column;
+      }
+
+      .profile-area,
+      .history-area{
+        width: 100%;
+      }
+
+    }
+
+    /* =========================================
+   CONTAINER DO HISTÓRICO
+========================================= */
+
+.historico-container{
+
+    width: 100%;
+    max-width: 100%;
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.08);
+
+}
+
+/* =========================================
+   ITEM DO PRODUTO
+========================================= */
+
+.produto-item{
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 25px 0;
+
+    border-bottom: 1px solid #dcdcdc;
+
+}
+
+/* remove linha do último item */
+
+.produto-item:last-child{
+
+    border-bottom: none;
+
+}
+
+/* =========================================
+   IMAGEM
+========================================= */
+
+.produto-imagem img{
+
+    width: 100px;
+    height: 100px;
+
+    object-fit: cover;
+
+}
+
+/* =========================================
+   INFORMAÇÕES
+========================================= */
+
+.produto-info{
+
+    flex: 1;
+
+    padding: 0 30px;
+
+}
+
+.produto-info small{
+
+    display: block;
+
+    color: #999;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+
+    font-size: 12px;
+
+}
+
+.produto-info h2{
+
+    color: #111;
+
+    margin-bottom: 10px;
+
+    font-size: 24px;
+
+    font-family: serif;
+
+}
+
+.produto-info p{
+
+    font-size: 28px;
+
+    color: #666;
+
+}
+
+/* =========================================
+   QUANTIDADE
+========================================= */
+
+.produto-quantidade{
+
+    min-width: 120px;
+
+    text-align: center;
+
+    border-left: 1px solid #dcdcdc;
+
+    padding-left: 30px;
+
+}
+
+.produto-quantidade span{
+
+    font-size: 48px;
+
+    color: #444;
+
+}
+
+ footer { padding: 80px 5%; text-align: center; background: #fff; border-top: 1px solid #eee; }
+        footer p { font-weight: 300; color: #888; font-size: 0.9rem; }
+
+
+        /* --- FOOTER SIMPLES E ELEGANTE --- */
+footer {
+    background-color: #fff;
+    padding: 80px 5% 40px;
+    border-top: 1px solid #f2f2f2;
+    text-align: center;
+}
+
+
+.footer-simple {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px; /* Espaço uniforme entre os blocos */
+}
+
+
+.footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+
+.footer-nav {
+    display: flex;
+    gap: 30px;
+}
+
+
+.footer-nav a {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: opacity 0.3s;
+}
+
+
+.footer-nav a:hover {
+    opacity: 0.5;
+}
+
+
+.footer-socials {
+    display: flex;
+    gap: 20px;
+}
+
+
+.footer-socials i {
+    width: 18px;
+    height: 18px;
+    color: #1a1a1a;
+    stroke-width: 1.2px;
+}
+
+
+.copyright {
+    font-size: 0.65rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media(max-width: 768px){
+
+    .produto-item{
+
+        flex-direction: column;
+
+        gap: 20px;
+
+        text-align: center;
+
+    }
+
+    .produto-info{
+
+        padding: 0;
+
+    }
+
+    .produto-quantidade{
+
+        border-left: none;
+
+        padding-left: 0;
+
+    }
+
+}
+
+ 
+    /* =========================
+       ATALHO DO ADMINISTRADOR
+    ========================== */
+
+    .btn-admin{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 80px;
+      padding: 20px;
+
+      background-color: #111;
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 4px;
+
+      box-shadow: 0px 10px 30px rgba(0,0,0,0.15);
+      transition: opacity 0.3s;
+    }
+
+    .btn-admin:hover{
+      opacity: 0.8;
+    }
+
+    .btn-admin i{
+      width: 20px;
+      height: 20px;
+    }
+
+    .btn-admin + .section-title{
+      margin-top: 40px;
+    }
+
+    /* BOTÃO SAIR DA CONTA */
+    .btn-sair{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+
+      background-color: transparent;
+      color: #111;
+      border: 1px solid #111;
+
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .btn-sair:hover{
+      opacity: 1;
+      background-color: #111;
+      color: white;
+    }
+
+    .btn-sair i{
+      width: 18px;
+      height: 18px;
+    }
+
+    .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

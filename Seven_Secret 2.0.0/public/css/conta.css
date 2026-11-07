@@ -1,0 +1,231 @@
+   
+        /* --- BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family:  'inter', sans-serif;
+            color: #1a1a1a;
+            background-color: #fbfbf9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        
+        footer .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -1px;
+            color: #000;
+            text-decoration: none;
+        }
+        footer nav a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+        footer nav {
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+footer nav a {
+    margin-left: 25px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+
+
+
+
+
+        /* --- LAYOUT LOGIN --- */
+        main {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-container {
+            width: 100%;
+            margin-top: 50px;
+            max-width: 430px;
+            background: #fff;
+            padding: 30px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            /* Títulos alinhados à esquerda como na imagem */
+        }
+
+        .auth-container h2 {
+            font-family: 'inter', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 500;
+            /* Peso médio conforme solicitado */
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .auth-container p.subtitle {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+            text-transform: inter;
+        }
+
+        /* --- FORMULÁRIO --- */
+        .form-group {
+            margin-bottom: 35px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 2px 0;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+            background: transparent;
+        }
+
+        .form-group input::placeholder {
+            color: #aaa;
+        }
+
+        .form-group input:focus {
+            border-bottom-color: #000;
+        }
+
+        .forgot-pass {
+            display: block;
+            text-align: right;
+            font-size: 0.75rem;
+            color: #999;
+            text-decoration: none;
+            margin-top: -15px;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        /* --- BOTÃO --- */
+        .btn-entrar {
+            width: 100%;
+            padding: 22px;
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            cursor: pointer;
+            margin-bottom: 30px;
+            transition: background 0.3s;
+        }
+
+        .btn-entrar:hover {
+            background: #333;
+        }
+
+        /* --- RODAPÉ DO CARD --- */
+        .signup-text {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            letter-spacing: 1px;
+        }
+
+        .signup-text a {
+            color: #70a1ff;
+            /* Azul suave do link na imagem */
+            text-decoration: underline;
+            margin-left: 5px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 40px 25px;
+            }
+
+            footer .logo {
+                font-size: 1.8rem;
+            }
+        }
+   
+
+        /* Caixa de Feedback Acessível (Design Universal) */
+.feedback-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.feedback-box svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.feedback-erro {
+    background-color: #fdf2f2;
+    border: 2px solid #b91c1c;
+    color: #7f1d1d;
+}
+
+.feedback-erro svg {
+    stroke: #b91c1c;
+}
+
+.feedback-aviso {
+    background-color: #fffbebfb;
+    border: 2px solid #b45309;
+    color: #78350f;
+}
+
+.feedback-aviso svg {
+    stroke: #b45309;
+}
+
+.feedback-sucesso {
+    background-color: #f0fdf4;
+    border: 2px solid #15803d;
+    color: #14532d;
+}
+
+.feedback-sucesso svg {
+    stroke: #15803d;
+}
